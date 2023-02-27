@@ -62,7 +62,7 @@ def on_fit_epoch_end(trainer):
             **trainer.metrics,
             "model/parameters": get_num_params(trainer.model),
             "model/GFLOPs": round(get_flops(trainer.model), 3),
-            "model/speed(ms/img)": round(trainer.validator.speed[1], 3),})
+            "model/speed(ms/img)": round(trainer.validator.speed['inference'], 3),})
 
     if trainer.best_fitness == trainer.fitness:
         wandb.run.summary.update({
